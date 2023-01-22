@@ -1,0 +1,5 @@
+Model,Cross-Validation Accuracy,Test Accuracy,ROC_AUC_Test,Threshold,Precision,Recall,F1 Score
+LogisticRegression_KFoldCV_Model,100.000%,100.000%,100.000%,0.9951,100.000%,100.000%,100.000%
+RandomForestClassifier_KFoldCV_Model,95.270%,95.902%,98.958%,0.4706,93.548%,90.625%,92.063%
+XGBoostClassifier_KFoldCV_Model,97.528%,98.361%,99.792%,0.5133,96.875%,96.875%,96.875%
+KNeighborsClassifier_KFoldCV_Model,94.239%,95.902%,99.010%,0.6327,88.571%,96.875%,92.537%
