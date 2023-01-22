@@ -53,7 +53,7 @@ Feel free to explore the data set with multiple **supervised** and **unsupervise
 **4. `model_pipelines.py` script:** encompasses a collection of model pipelines that are used to construct models for the binary classification task of determining the status of an individual with regards to Autistic Spectrum Disorder (ASD). These pipelines provide a streamlined and efficient method for building, training and evaluating the models for this classification task.<br><br>
 **5. `Saved Model` Folder:** contains best estimator/model's pickle file (format: .sav)<br><br>
 **6. `results.csv`:** model evaluation results of all the classifiers taken into account to perform the set of experiments<br><br>
-
+**7. `requirements.txt`:** serves as a comprehensive inventory of all the necessary Python packages and their corresponding versions utilized within the virtual environment established for the project. While there may be additional modules required, the specified packages within this file ensure the seamless and consistent execution of the project across varying environments upon their installation.<br><br>
 
 ### Acknowledgement
 
