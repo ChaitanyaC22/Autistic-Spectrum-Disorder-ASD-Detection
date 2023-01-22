@@ -1,8 +1,6 @@
+## Project Objective: To Detect Autistic Spectrum Disorder (ASD) cases 
 
-## Autism Screening Adult Data Set 
-
-### Project Objective: To Detect Autistic Spectrum Disorder (ASD) cases 
-
+### Autism Screening Adult Data Set 
 
 ---
 ![](Autism_Img.jpg)
@@ -47,6 +45,15 @@ Feel free to explore the data set with multiple **supervised** and **unsupervise
 | 21                	| Class/ASD       	| yes, no                                                                                                                                             	| Qualitative  	| "yes", "no"                        	| 0             	|
 
 ---
+### Project files related information:
+
+**1. `Autistic-Spectrum-Disorder-ASD-Detection-Project.ipynb`:** Jupyter notebook showcases a thorough examination of data through exploratory analysis and data visualization techniques, as well as the selection and training of models pertinent to the classification task of identifying individuals with ASD. The notebook also includes evaluations of the chosen models' performance.<br><br>
+**2. `Autistic-Spectrum-Disorder-ASD-Detection-Project.html`:** Web-page displaying Autistic-Spectrum-Disorder-ASD-Detection-Project.ipynb<br><br>
+**3. `helper_functions.py` script:** comprises of all the essential auxiliary functions or methods that are required to perform various operations such as data visualization through the creation of graphs, and other miscellaneous tasks that are necessary for the completion of the project.<br><br>
+**4. `model_pipelines.py` script:** encompasses a collection of model pipelines that are used to construct models for the binary classification task of determining the status of an individual with regards to Autistic Spectrum Disorder (ASD). These pipelines provide a streamlined and efficient method for building, training and evaluating the models for this classification task.<br><br>
+**5. `Saved Model` Folder:** contains best estimator/model's pickle file (format: .sav)<br><br>
+**6. `results.csv`:** model evaluation results of all the classifiers taken into account to perform the set of experiments<br><br>
+
 
 ### Acknowledgement
 
