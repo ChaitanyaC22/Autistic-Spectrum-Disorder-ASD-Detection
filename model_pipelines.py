@@ -45,17 +45,13 @@ random.seed(0)
 np.random.seed(0)
 
 import helper_functions
-from helper_functions import *
+from helper_functions import *  # Imports all libraries and 'magic_helper' class 
 
 
-class classifier_pipelines:
+class classifier_pipelines:      
     
-    # Importing the 'helper_class' from 'helper_functions' module
-    def __init__(self):
-        self.magic_helper_func = magic_helper()
-    
-
-    def LogisticRegression_KFoldCV_Model(self, X_train, y_train, X_test, y_test, model_name, results_df):
+    @classmethod
+    def LogisticRegression_KFoldCV_Model(cls, X_train, y_train, X_test, y_test, model_name, results_df):
         """
         Builds optimal logistic regression estimator by cross-validating, tuning hyperparameters 
         and evaluates the model
@@ -107,7 +103,7 @@ class classifier_pipelines:
         optimal_solver= clf.best_params_['logisticregression__solver']        ## Storing optimal hyperparameters in variables
         optimal_penalty= clf.best_params_['logisticregression__penalty']
         optimal_C= float(clf.best_params_['logisticregression__C'])
-        self.magic_helper_func.best_cross_val_results(clf, model_name)        ## Get best cross_validation result
+        magic_helper.best_cross_val_results(clf, model_name) ## Get best cross_validation results (Using 'magic_helper' class function)
         
         ##Initialize the classifier with optimal hyperparameters  
         clf_opt= clf.best_estimator_._final_estimator    ## Best estimator already found out above, after fitting on (X_train,y_train)
@@ -117,7 +113,7 @@ class classifier_pipelines:
         print("Best penalty:", optimal_penalty)
         print("Best solver:", optimal_solver)
         # Prediction and evaluation results on actual TEST data
-        results_store_df= self.magic_helper_func.prediction_evaluation_results(clf, X_train, y_train, 
+        results_store_df= magic_helper.prediction_evaluation_results(clf, X_train, y_train, 
                                                         X_test, y_test,
                                                         model_name, results_df) 
         results_df= results_df.append(results_store_df, ignore_index=True)   ## Appending the results to 'results_df' dataframe
@@ -133,7 +129,8 @@ class classifier_pipelines:
     
     
 
-    def RandomForestClassifier_KFoldCV_Model(self, X_train, y_train, X_test, y_test, model_name, results_df):
+    @classmethod
+    def RandomForestClassifier_KFoldCV_Model(cls, X_train, y_train, X_test, y_test, model_name, results_df):
         """
         Builds optimal random forest classifier/estimator by cross-validating, tuning hyperparameters 
         and evaluates the model
@@ -195,7 +192,7 @@ class classifier_pipelines:
         optimal_max_features= clf.best_params_['randomforestclassifier__max_features']
         optimal_max_depth= int(clf.best_params_['randomforestclassifier__max_depth'])
         optimal_criterion= clf.best_params_['randomforestclassifier__criterion']
-        self.magic_helper_func.best_cross_val_results(clf, model_name)      # Get best cross_validation results
+        magic_helper.best_cross_val_results(clf, model_name)      # Get best cross_validation results
         ##Initialize the classifier with optimal hyperparameters
         clf_opt = clf.best_estimator_._final_estimator      ## Best estimators found earlier, already fit on (X_train, y_train)              
 
@@ -207,7 +204,7 @@ class classifier_pipelines:
         print("Best max_depth:", optimal_max_depth)
         print("Best criterion:", optimal_criterion)
         # prediction and evaluation results on actual TEST data
-        results_store_df= self.magic_helper_func.prediction_evaluation_results(clf, X_train, y_train, 
+        results_store_df= magic_helper.prediction_evaluation_results(clf, X_train, y_train, 
                                                         X_test, y_test, 
                                                         model_name, results_df) 
         results_df= results_df.append(results_store_df, ignore_index=True)   ## Appending the results to 'results_df' dataframe
@@ -223,8 +220,9 @@ class classifier_pipelines:
     
 
 
-
-    def XGBoostClassifier_KFoldCV_Model(self, X_train, y_train, X_test, y_test, model_name, results_df):
+    
+    @classmethod
+    def XGBoostClassifier_KFoldCV_Model(cls, X_train, y_train, X_test, y_test, model_name, results_df):
         """
         Builds optimal XGBoost classifier/estimator by cross-validating, tuning hyperparameters 
         and evaluates the model
@@ -275,7 +273,7 @@ class classifier_pipelines:
         optimal_n_estimators= int(clf.best_params_['xgbclassifier__n_estimators'])
         optimal_max_depth= int(clf.best_params_['xgbclassifier__max_depth'])
         optimal_learning_rate= float(clf.best_params_['xgbclassifier__learning_rate'])
-        self.magic_helper_func.best_cross_val_results(clf, model_name)     ## Get best cross_validation results
+        magic_helper.best_cross_val_results(clf, model_name)     ## Get best cross_validation results
         ##Initialize the classifier with optimal hyperparameters
         clf_opt = clf.best_estimator_._final_estimator      ## Best estimators found earlier, already fit on (X_train, y_train)              
 
@@ -284,7 +282,7 @@ class classifier_pipelines:
         print("Best max depth:", optimal_max_depth)
         print("Best learning rate:", optimal_learning_rate)
         # prediction and evaluation results on actual TEST data
-        results_store_df= self.magic_helper_func.prediction_evaluation_results(clf, X_train, y_train, X_test, y_test,
+        results_store_df= magic_helper.prediction_evaluation_results(clf, X_train, y_train, X_test, y_test,
                                                     model_name, results_df) 
         results_df= results_df.append(results_store_df, ignore_index=True)   ## Appending the results to 'results_df' dataframe
         end= time.time()
@@ -299,8 +297,8 @@ class classifier_pipelines:
     
     
 
-
-    def KNeighborsClassifier_KFoldCV_Model(self, X_train, y_train, X_test, y_test, model_name, results_df):
+    @classmethod
+    def KNeighborsClassifier_KFoldCV_Model(cls, X_train, y_train, X_test, y_test, model_name, results_df):
         """
         Builds optimal KNeighbors classifier/estimator by cross-validating, tuning hyperparameters 
         and evaluates the model
@@ -342,14 +340,14 @@ class classifier_pipelines:
 
         clf.fit(X_train, y_train)
         optimal_n_neighbors= int(clf.best_params_['kneighborsclassifier__n_neighbors'])
-        self.magic_helper_func.best_cross_val_results(clf, model_name)
+        magic_helper.best_cross_val_results(clf, model_name)
         ##Initialize the classifier with optimal hyperparameters
         clf_opt= clf.best_estimator_._final_estimator    ## Best estimator found earlier and already fit on (X_train,y_train)                             
 
         print("Optimal hyperparameters:")
         print("Best n_neighbors (K):", optimal_n_neighbors)
         # prediction and evaluation results on actual TEST data
-        results_store_df= self.magic_helper_func.prediction_evaluation_results(clf, X_train, y_train, 
+        results_store_df= magic_helper.prediction_evaluation_results(clf, X_train, y_train, 
                                                         X_test, y_test,
                                                         model_name, results_df) 
         results_df= results_df.append(results_store_df, ignore_index=True)   ## Appending the results to 'results_df' dataframe

@@ -299,8 +299,8 @@ class magic_helper:
         else:
             return "Error: Number of samples requested is greater than the number of elements in the list."
         
-
-    def create_barplots_cat_binary(self, df, categorical_binary_features):
+    @classmethod
+    def create_barplots_cat_binary(cls, df, categorical_binary_features):
         """
         Create barplots for categorical binary features in the ASD dataset.
 
@@ -316,7 +316,7 @@ class magic_helper:
         for i in categorical_binary_features:
             plt.subplot(subplot_num)
             # Color
-            chosen_color_pair = magic_helper.generate_random_samples()    # Calling static method within 'magic_helper' class
+            chosen_color_pair = cls.generate_random_samples()  # Calling static method within the current 'magic_helper' class 
             (df[i].value_counts(normalize=True)*100).round(2).plot(kind='bar', 
                                                                    rot=0, 
                                                                    color=chosen_color_pair)
@@ -416,19 +416,19 @@ class magic_helper:
         plt.ylabel('True label', fontsize= 14)
         plt.xlabel('Predicted label', fontsize=14)
 
-        
-    def print_model_metrics(self, y_test,y_pred):
+    
+    @classmethod
+    def print_model_metrics(cls, y_test,y_pred):
         """
         Evaluates a model's performance by taking true and predicted labels as inputs and prints the evaluation metrics
         """
         print(" Model Stats Scores Summary : ")
         cp = confusion_matrix(y_test,y_pred)
         plt.figure(figsize=(5,5))
-        self.plot_confusion_matrix(cp)
+        cls.plot_confusion_matrix(cp)
         plt.show()    
         
 
-    ## Define a function to plot ROC_AUC curve
     @staticmethod
     def plot_roc_auc_curve(fpr, tpr, roc_auc):
         """
@@ -463,7 +463,8 @@ class magic_helper:
         print('\033[1m'+"Best (Optimal) Parameters:\n", clf.best_params_);print('\033[0m')
 
 
-    def prediction_evaluation_results(self,clf,X_train,y_train,X_test,y_test,model_name,results_df):
+    @classmethod
+    def prediction_evaluation_results(cls,clf,X_train,y_train,X_test,y_test,model_name,results_df):
         """
         Evaluates the performance of the best estimator/model obtained after 
         cross-validation and hyperparameter tuning using unseen test dataset.
@@ -490,14 +491,14 @@ class magic_helper:
         print('\033[1m'+f"Test Accuracy: {test_accuracy*100:.3f}%");print()
         print('\033[1m'+"Confusion Matrix"+'\033[0m')                                                   # print confusion matrix
         
-        self.print_model_metrics(y_test, y_pred)
+        cls.print_model_metrics(y_test, y_pred)
         print('\033[1m'+"Classification Report"+'\033[0m')                                              # Print classification report
         print(classification_report(y_test, y_pred))
         fpr, tpr, thresholds = metrics.roc_curve(y_test, y_pred_probs)              # fpr, tpr and threshold
         threshold= thresholds[np.argmax(tpr-fpr)]                                   # Find the optimal threshold value
         print('\033[1m'+f"Optimal Threshold: {threshold:.4f}");print('\033[0m')
         
-        self.plot_roc_auc_curve(fpr, tpr, test_roc_auc)      # Plots ROC_AUC curve for test dataset (using defined method)
+        cls.plot_roc_auc_curve(fpr, tpr, test_roc_auc)      # Plots ROC_AUC curve for test dataset (using defined method)
         # Store values
         cross_val_acc = f"{clf.best_score_*100:.3f}%"
         test_accuracy = f"{test_accuracy*100:.3f}%"
