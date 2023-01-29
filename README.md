@@ -60,7 +60,7 @@ Feel free to explore the data set with multiple **supervised** and **unsupervise
 This data set has been sourced from the Machine Learning Repository of University of California, Irvine [Autism Screening Adult Data Set (UC Irvine)](https://archive.ics.uci.edu/ml/datasets/Autism+Screening+Adult). 
 The UCI page mentions the following as the original source of the data set:
 
-+ Fadi Fayez Thabtah, Department of Digital Technology, Manukau Institute of Technology, Auckland, New Zealand 
++ *Fadi Fayez Thabtah, Department of Digital Technology, Manukau Institute of Technology, Auckland, New Zealand*
 <br><br><br>
 
 Thank you for taking the time to visit this repository!
